@@ -40,7 +40,9 @@ function addItemToList() {
    }
  }
  const itemToArray = newItem.split(" ");
- console.log(itemToArray);
+ const capitalizeWords = []; 
+ 
+ 
  const capitaize = newItem.charAt(0).toUpperCase() + newItem.slice(1).toLowerCase();
   items.push(capitaize);
   printList();
