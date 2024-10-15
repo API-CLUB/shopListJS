@@ -4,8 +4,14 @@
 // Los ítems deben aparecer en el orden en el que fueron añadidos.
 
 // Esta lista es la que de debe mostrar en el navegador
-let items = ["Orange", "Apple", "Banana"];
+let items = [];
 const shopListDOM = document.getElementById('listId')
+const inputIdDOM = document.getElementById("inputId")
+const addBtnId = document.getElementById("addBtnId")
+
+
+
+
 
 // Función para pintar la lista en el navegador
 function printList() {
@@ -18,12 +24,18 @@ function printList() {
 function deleteItemFromList(item) {}
 
 // Función para agregar un item a la lista
-function addItemToList() {}
+function addItemToList() {
+  items.push(inputIdDOM.value);
+  shopListDOM.innerHTML = "";
+  printList();
+}
 
 // Función principal - Aquí empieza la aplicación
 function main() {
   // alert("Welcome to the list app! Start deleting this alert, please.");
+  addBtnId.addEventListener("click", addItemToList);
   printList();
+
 }
 
 // Llamada a la función principal
