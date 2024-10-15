@@ -15,6 +15,7 @@ const addBtnId = document.getElementById("addBtnId")
 
 // Función para pintar la lista en el navegador
 function printList() {
+  shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++){ 
     shopListDOM.innerHTML += `<li>${items[i]}<span onclick="" class="item-delete-btn">x</span></li>`
   }
@@ -25,10 +26,26 @@ function deleteItemFromList(item) {}
 
 // Función para agregar un item a la lista
 function addItemToList() {
-  items.push(inputIdDOM.value);
-  shopListDOM.innerHTML = "";
+  const newItem = inputIdDOM.value.trim();
+  inputIdDOM.value = "";
+
+  if(!newItem){
+    alert("añade algo !! ");
+    return;
+  }
+  for (const item of items) {
+    if(item.toLowerCase() == newItem.toLowerCase()){
+     alert("ya esta en la lista");
+     return;
+   }
+ }
+ const itemToArray = newItem.split(" ");
+ console.log(itemToArray);
+ const capitaize = newItem.charAt(0).toUpperCase() + newItem.slice(1).toLowerCase();
+  items.push(capitaize);
   printList();
 }
+
 
 // Función principal - Aquí empieza la aplicación
 function main() {
