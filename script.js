@@ -6,9 +6,12 @@
 // Esta lista es la que de debe mostrar en el navegador
 let items = ["Orange", "Apple", "Banana"];
 const shopListDOM = document.getElementById('listId')
+
 // Función para pintar la lista en el navegador
 function printList() {
-  console.log (shopListDOM)
+  for (let i = 0; i < items.length; i++){ 
+    shopListDOM.innerHTML += `<li>${items[i]}<span onclick="" class="item-delete-btn">x</span></li>`
+  }
 }
 
 // Función para eliminar un item de la lista
@@ -19,7 +22,7 @@ function addItemToList() {}
 
 // Función principal - Aquí empieza la aplicación
 function main() {
-  alert("Welcome to the list app! Start deleting this alert, please.");
+  // alert("Welcome to the list app! Start deleting this alert, please.");
   printList();
 }
 
