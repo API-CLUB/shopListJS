@@ -29,7 +29,7 @@ function addItemToList() {
     alert("añade algo !! ");
     return;
   }
-  if(newItem.length>25){
+  if (newItem.length > 25) {
     alert("el archivo es superior a 25 caracteres");
     return;
   }
@@ -40,24 +40,24 @@ function addItemToList() {
     }
   }
 
-  
-  items.push(newItem);
+  items.push(textFormat(newItem));
   printList();
 }
 
-function textFormat(text){
+function textFormat(text) {
   const splitText = text.split(" ");
   const wordFormatText = [];
-  splitText.forEach((word) => 
-    wordFormatText.push(word.charAt(0).toUpperCase() + wordFormatText.slice(1).toLowerCase())
+  splitText.forEach((word) =>
+    wordFormatText.push(
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    )
   );
   return wordFormatText.join(" ");
 }
 
 // Función principal - Aquí empieza la aplicación
 function main() {
-  
-  console.log( textFormat("hola grupo") )
+  console.log(textFormat("hola grupo"));
   // alert("Welcome to the list app! Start deleting this alert, please.");
   addBtnId.addEventListener("click", addItemToList);
   printList();
