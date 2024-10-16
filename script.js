@@ -13,12 +13,16 @@ const addBtnId = document.getElementById("addBtnId");
 function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
-    shopListDOM.innerHTML += `<li>${items[i]}<span onclick="" class="item-delete-btn">x</span></li>`;
+    shopListDOM.innerHTML += `<li>${items[i]}<span onclick="deleteItemFromList('${items[i]}')" class="item-delete-btn">x</span></li>`;
   }
 }
 
 // Función para eliminar un item de la lista
-function deleteItemFromList(item) {}
+function deleteItemFromList(item) {
+  const indexProduct = items.indexOf(item);
+  items.splice(indexProduct, 1);
+  printList();
+}
 
 // Función para agregar un item a la lista
 function addItemToList() {
