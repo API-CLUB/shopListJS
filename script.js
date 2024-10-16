@@ -13,18 +13,24 @@ const addBtnId = document.getElementById("addBtnId");
 function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
-    shopListDOM.innerHTML += `<li>${items[i]}<span onclick="deleteItemFromList('${items[i]}')" class="item-delete-btn">x</span></li>`;
+    shopListDOM.innerHTML += `<li><span><input type="checkbox" onchange="checkedItem('${i}')" ${
+      items[i].isBought ? "checked" : ""
+    } ></span>${
+      items[i].nameProduct
+    }<span onclick="deleteItemFromList('${i}')" class="item-delete-btn">x</span></li>`;
   }
 }
 
 // Función para eliminar un item de la lista
 function deleteItemFromList(item) {
-  const indexProduct = items.indexOf(item);
-  items.splice(indexProduct, 1);
+  items.splice(item, 1);
   printList();
 }
 
 // Función para agregar un item a la lista
+
+// OBJTO : nameProduct isBought
+
 function addItemToList() {
   const newItem = inputIdDOM.value.trim();
   inputIdDOM.value = "";
@@ -38,13 +44,17 @@ function addItemToList() {
     return;
   }
   for (const item of items) {
-    if (item.toLowerCase() == newItem.toLowerCase()) {
+    if (item.nameProduct.toLowerCase() == newItem.toLowerCase()) {
       alert("ya esta en la lista");
       return;
     }
   }
 
-  items.push(textFormat(newItem));
+  items.push({
+    nameProduct: textFormat(newItem),
+    isBought: false,
+  });
+  console.log(items);
   printList();
 }
 
