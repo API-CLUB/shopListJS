@@ -29,6 +29,10 @@ function addItemToList() {
     alert("añade algo !! ");
     return;
   }
+  if(newItem.length>25){
+    alert("el archivo es superior a 25 caracteres");
+    return;
+  }
   for (const item of items) {
     if (item.toLowerCase() == newItem.toLowerCase()) {
       alert("ya esta en la lista");
@@ -36,23 +40,24 @@ function addItemToList() {
     }
   }
 
-  const itemToArray = newItem.split(" ");
-  const capitalizeWords = [];
-  for (const word of words) {
-    const capitalizedWord =
-      itemToArray.charAt(0).toUpperCase() + itemToArray.slice(1).toLowerCase();
-    capitalizedWords.push(capitalizedWord);
-  }
-  capitalizedWords.join(" ");
-
-  const capitaize =
-    newItem.charAt(0).toUpperCase() + newItem.slice(1).toLowerCase();
-  items.push(capitaize);
+  
+  items.push(newItem);
   printList();
+}
+
+function textFormat(text){
+  const splitText = text.split(" ");
+  const wordFormatText = [];
+  splitText.forEach((word) => 
+    wordFormatText.push(word.charAt(0).toUpperCase() + wordFormatText.slice(1).toLowerCase())
+  );
+  return wordFormatText.join(" ");
 }
 
 // Función principal - Aquí empieza la aplicación
 function main() {
+  
+  console.log( textFormat("hola grupo") )
   // alert("Welcome to the list app! Start deleting this alert, please.");
   addBtnId.addEventListener("click", addItemToList);
   printList();
