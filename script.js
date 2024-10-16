@@ -13,11 +13,26 @@ const addBtnId = document.getElementById("addBtnId");
 function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
-    shopListDOM.innerHTML += `<li><span><input type="checkbox" onchange="checkedItem('${i}')" ${
+    shopListDOM.innerHTML += `<li>
+    <span><input type="checkbox" onchange="checkedItem('${i}')" ${
       items[i].isBought ? "checked" : ""
-    } ></span>${
-      items[i].nameProduct
-    }<span onclick="deleteItemFromList('${i}')" class="item-delete-btn">x</span></li>`;
+    } ></span>
+    <span class='textSpan'>${items[i].nameProduct}</span>
+    <span onclick="deleteItemFromList('${i}')" class="item-delete-btn">x</span>
+    </li>`;
+  }
+}
+
+function checkedItem(index) {
+  const liDOM = document.querySelectorAll("li")[index];
+  const textSpanDOM = liDOM.querySelector("span.textSpan");
+  if (!items[index].isBought) {
+    items[index].isBought = true;
+    textSpanDOM.style.fontStyle = "italic";
+    textSpanDOM.style.textDecoration = "line-through";
+  } else {
+    items[index].isBought = false;
+    textSpanDOM.removeAttribute("style");
   }
 }
 
@@ -54,7 +69,6 @@ function addItemToList() {
     nameProduct: textFormat(newItem),
     isBought: false,
   });
-  console.log(items);
   printList();
 }
 
@@ -71,7 +85,6 @@ function textFormat(text) {
 
 // Función principal - Aquí empieza la aplicación
 function main() {
-  console.log(textFormat("hola grupo"));
   // alert("Welcome to the list app! Start deleting this alert, please.");
   addBtnId.addEventListener("click", addItemToList);
   printList();
