@@ -17,28 +17,27 @@ function printList() {
     <span><input type="checkbox" onchange="checkedItem('${i}')" ${
       items[i].isBought ? "checked" : ""
     } ></span>
-    <span class='textSpan'>${items[i].nameProduct}</span>
+    <span class='${items[i].isBought ? "textSpan" : ""}'>${
+      items[i].nameProduct
+    }</span>
     <span onclick="deleteItemFromList('${i}')" class="item-delete-btn">x</span>
     </li>`;
   }
 }
 
 function checkedItem(index) {
-  const liDOM = document.querySelectorAll("li")[index];
-  const textSpanDOM = liDOM.querySelector("span.textSpan");
   if (!items[index].isBought) {
     items[index].isBought = true;
-    textSpanDOM.style.fontStyle = "italic";
-    textSpanDOM.style.textDecoration = "line-through";
   } else {
     items[index].isBought = false;
-    textSpanDOM.removeAttribute("style");
   }
+
+  //! comrpobar que funciona la funcion printList();
 }
 
 // Función para eliminar un item de la lista
-function deleteItemFromList(item) {
-  items.splice(item, 1);
+function deleteItemFromList(index) {
+  items.splice(index, 1);
   printList();
 }
 

@@ -78,3 +78,8 @@ button {
     border: 1px solid #c1c1c1;
   }
 }
+
+.textSpan {
+  font-style: italic;
+  text-decoration: line-through;
+}
