@@ -1,15 +1,14 @@
-// La lista debe cargarse automáticamente cuando la aplicación se inicia.
-// Cada ítem debe mostrarse en su propio elemento <li>, con un botón de eliminar "x" a la derecha.
-// Si la lista está vacía, no se debe mostrar ningún ítem, pero el contenedor de la lista debe permanecer visible.
-// Los ítems deben aparecer en el orden en el que fueron añadidos.
-
-// Esta lista es la que de debe mostrar en el navegador
+//VAR   VARIABLES DOM
 let items = [];
 const shopListDOM = document.getElementById("listId");
 const inputIdDOM = document.getElementById("inputId");
 const addBtnId = document.getElementById("addBtnId");
 
-// Función para pintar la lista en el navegador
+//
+
+main();
+
+//¿   FUNCTION TO PRINT ARRAY[ITEMS]
 function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
@@ -25,26 +24,7 @@ function printList() {
   }
 }
 
-function checkedItem(index) {
-  if (!items[index].isBought) {
-    items[index].isBought = true;
-  } else {
-    items[index].isBought = false;
-  }
-
-  //! comrpobar que funciona la funcion printList();
-}
-
-// Función para eliminar un item de la lista
-function deleteItemFromList(index) {
-  items.splice(index, 1);
-  printList();
-}
-
-// Función para agregar un item a la lista
-
-// OBJTO : nameProduct isBought
-
+//!   FUNCTION TO ADD ITEM
 function addItemToList() {
   const newItem = inputIdDOM.value.trim();
   inputIdDOM.value = "";
@@ -71,6 +51,19 @@ function addItemToList() {
   printList();
 }
 
+//¡   FUNCTION TO DELETE
+function deleteItemFromList(index) {
+  items.splice(index, 1);
+  //! comprobar funcion printList();
+}
+
+//OKAY   FUNCION TO CHECKBOX
+function checkedItem(index) {
+  items[index].isBought = !items[index].isBought;
+  printList();
+}
+
+//-   FUNCTION TO FORMAT TEXT
 function textFormat(text) {
   const splitText = text.split(" ");
   const wordFormatText = [];
@@ -82,12 +75,28 @@ function textFormat(text) {
   return wordFormatText.join(" ");
 }
 
-// Función principal - Aquí empieza la aplicación
+//?   FUNCTION MAIN
 function main() {
   // alert("Welcome to the list app! Start deleting this alert, please.");
   addBtnId.addEventListener("click", addItemToList);
   printList();
+  test();
 }
 
-// Llamada a la función principal
-main();
+//TEST   FUNCTION TO TEST FORMAT + MAX CHARACTERS
+function test() {
+  const formatOK = "Aa Aa Aa Aa Aa Aa Aa Aa";
+  let check = "";
+  for (let i = 0; i < 9; i++) {
+    const inpuTest = document.getElementById("inputId");
+    check += " aa";
+    inpuTest.value = check;
+    addItemToList();
+  }
+  const result = items[items.length - 1];
+  return console.log(
+    `Error +25 caracteres y comprobacion del formato: ${
+      result.nameProduct == formatOK
+    }`
+  );
+}
