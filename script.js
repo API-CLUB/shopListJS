@@ -22,7 +22,7 @@ async function getAllItemsFromAPI() {
 
 //¿   FUNCTION TO PRINT ARRAY[ITEMS]
 async function printList() {
-  await apiCall();
+  await getAllItemsFromAPI();
   console.log(items);
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
