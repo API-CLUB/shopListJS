@@ -1,4 +1,9 @@
-import { getAllItemsFromAPI, postItemToAPI } from "./api.sercices.js";
+import {
+  getAllItemsFromAPI,
+  postItemToAPI,
+  deleteItemFromAPI,
+  patchItemToAPI,
+} from "./api.services.js";
 
 // APICALL
 //VAR   VARIABLES DOM
@@ -19,15 +24,22 @@ async function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
     shopListDOM.innerHTML += `<li>
-    <span><input type="checkbox" onchange="checkedItem('${i}')" ${
-      items[i].isBought ? "checked" : ""
-    } ></span>
+   
+
+<span>
+  <input 
+    type="checkbox" 
+    onchange="checkedItem(${items[i].id})" 
+    ${items[i].isBought ? "checked" : ""} 
+  >
+</span
+
     <span class='${items[i].isBought ? "textSpan" : ""}'>${
       items[i].nameProduct
     }</span>
-    <span onclick="deleteItemFromList('${i}')" class="item-delete-btn" id='${
+    <span onclick="deleteItemFromList('${
       items[i].id
-    }'>x</span>
+    }')" class="item-delete-btn" id='${items[i].id}'>x</span>
     </li>`;
   }
 }
@@ -60,15 +72,22 @@ async function addItemToList() {
 }
 
 //¡   FUNCTION TO DELETE
-function deleteItemFromList(index) {
-  items.splice(index, 1);
-  printList();
+async function deleteItemFromList(inputIdDOM) {
+  await deleteItemFromAPI(inputIdDOM);
+
+  await printList();
 }
 
 //OKAY   FUNCION TO CHECKBOX
-function checkedItem(index) {
-  items[index].isBought = !items[index].isBought;
-  printList();
+async function checkedItem(idDOM) {
+  let itemStatus = !items[idDOM].isBought;
+  console.log(idDOM);
+  let itemObject = {
+    isBought: itemStatus,
+  };
+  await patchItemToAPI(idDOM, itemObject);
+
+  await printList();
 }
 
 //-   FUNCTION TO FORMAT TEXT

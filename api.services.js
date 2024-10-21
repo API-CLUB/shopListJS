@@ -17,3 +17,10 @@ export async function deleteItemFromAPI(id) {
     method: "DELETE",
   });
 }
+export async function patchItemToAPI(id, item) {
+  const response = await fetch(URL_BASE + "/ingredients/" + id, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(item),
+  });
+}
