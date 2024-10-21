@@ -1,3 +1,12 @@
+// APICALL
+async function apiCall() {
+  const response = await fetch(
+    "https://670ed0e63e7151861655dd83.mockapi.io/api/v1/ingredients"
+  );
+  const data = response.json;
+  console.log(data);
+}
+
 //VAR   VARIABLES DOM
 let items = [];
 const shopListDOM = document.getElementById("listId");
@@ -5,8 +14,6 @@ const inputIdDOM = document.getElementById("inputId");
 const addBtnId = document.getElementById("addBtnId");
 
 //
-
-main();
 
 //¿   FUNCTION TO PRINT ARRAY[ITEMS]
 function printList() {
@@ -33,7 +40,7 @@ function addItemToList() {
     alert("añade algo !! ");
     return;
   }
-  if (newItem.length > 25) {
+  if (newItem.length > 150) {
     alert("el archivo es superior a 25 caracteres");
     return;
   }
@@ -54,7 +61,7 @@ function addItemToList() {
 //¡   FUNCTION TO DELETE
 function deleteItemFromList(index) {
   items.splice(index, 1);
-  //! comprobar funcion printList();
+  printList();
 }
 
 //OKAY   FUNCION TO CHECKBOX
@@ -79,24 +86,12 @@ function textFormat(text) {
 function main() {
   // alert("Welcome to the list app! Start deleting this alert, please.");
   addBtnId.addEventListener("click", addItemToList);
+  apiCall();
   printList();
-  test();
 }
 
-//TEST   FUNCTION TO TEST FORMAT + MAX CHARACTERS
-function test() {
-  const formatOK = "Aa Aa Aa Aa Aa Aa Aa Aa";
-  let check = "";
-  for (let i = 0; i < 9; i++) {
-    const inpuTest = document.getElementById("inputId");
-    check += " aa";
-    inpuTest.value = check;
-    addItemToList();
-  }
-  const result = items[items.length - 1];
-  return console.log(
-    `Error +25 caracteres y comprobacion del formato: ${
-      result.nameProduct == formatOK
-    }`
-  );
-}
+main();
+
+window.addItemToList = addItemToList;
+window.deleteItemFromList = deleteItemFromList;
+window.checkedItem = checkedItem;
