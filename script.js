@@ -2,6 +2,7 @@ import {
   getAllItemsFromAPI,
   postItemToAPI,
   deleteItemFromAPI,
+  patchItemToAPI,
 } from "./api.services.js";
 
 // APICALL
@@ -23,9 +24,16 @@ async function printList() {
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
     shopListDOM.innerHTML += `<li>
-    <span><input type="checkbox" onchange="checkedItem('${i}')" ${
-      items[i].isBought ? "checked" : ""
-    } ></span>
+   
+
+<span>
+  <input 
+    type="checkbox" 
+    onchange="checkedItem(${items[i].id})" 
+    ${items[i].isBought ? "checked" : ""} 
+  >
+</span
+
     <span class='${items[i].isBought ? "textSpan" : ""}'>${
       items[i].nameProduct
     }</span>
@@ -71,9 +79,15 @@ async function deleteItemFromList(inputIdDOM) {
 }
 
 //OKAY   FUNCION TO CHECKBOX
-function checkedItem(index) {
-  items[index].isBought = !items[index].isBought;
-  printList();
+async function checkedItem(idDOM) {
+  let itemStatus = !items[idDOM].isBought;
+  console.log(idDOM);
+  let itemObject = {
+    isBought: itemStatus,
+  };
+  await patchItemToAPI(idDOM, itemObject);
+
+  await printList();
 }
 
 //-   FUNCTION TO FORMAT TEXT
