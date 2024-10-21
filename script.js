@@ -1,3 +1,5 @@
+import { getAllItemsFromAPI, postItemToAPI } from "./api.sercices.js";
+
 // APICALL
 //VAR   VARIABLES DOM
 let items = [];
@@ -11,19 +13,9 @@ const shopListDOM = document.getElementById("listId");
 const inputIdDOM = document.getElementById("inputId");
 const addBtnId = document.getElementById("addBtnId");
 
-async function getAllItemsFromAPI() {
-  const response = await fetch(
-    "https://670ed0e63e7151861655dd83.mockapi.io/api/v1/ingredients"
-  );
-  const data = await response.json();
-  items = data;
-  console.log(items);
-}
-
 //¿   FUNCTION TO PRINT ARRAY[ITEMS]
 async function printList() {
-  await getAllItemsFromAPI();
-  console.log(items);
+  items = await getAllItemsFromAPI();
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
     shopListDOM.innerHTML += `<li>
@@ -33,13 +25,15 @@ async function printList() {
     <span class='${items[i].isBought ? "textSpan" : ""}'>${
       items[i].nameProduct
     }</span>
-    <span onclick="deleteItemFromList('${i}')" class="item-delete-btn">x</span>
+    <span onclick="deleteItemFromList('${i}')" class="item-delete-btn" id='${
+      items[i].id
+    }'>x</span>
     </li>`;
   }
 }
 
 //!   FUNCTION TO ADD ITEM
-function addItemToList() {
+async function addItemToList() {
   const newItem = inputIdDOM.value.trim();
   inputIdDOM.value = "";
 
@@ -57,12 +51,12 @@ function addItemToList() {
       return;
     }
   }
-
-  items.push({
+  let newItemObject = {
     nameProduct: textFormat(newItem),
     isBought: false,
-  });
-  printList();
+  };
+  await postItemToAPI(newItemObject);
+  await printList();
 }
 
 //¡   FUNCTION TO DELETE
