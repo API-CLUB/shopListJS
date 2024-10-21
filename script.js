@@ -11,7 +11,7 @@ const shopListDOM = document.getElementById("listId");
 const inputIdDOM = document.getElementById("inputId");
 const addBtnId = document.getElementById("addBtnId");
 
-async function apiCall() {
+async function getAllItemsFromAPI() {
   const response = await fetch(
     "https://670ed0e63e7151861655dd83.mockapi.io/api/v1/ingredients"
   );
