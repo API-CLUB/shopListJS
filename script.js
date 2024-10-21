@@ -1,4 +1,8 @@
-import { getAllItemsFromAPI, postItemToAPI } from "./api.sercices.js";
+import {
+  getAllItemsFromAPI,
+  postItemToAPI,
+  deleteItemFromAPI,
+} from "./api.services.js";
 
 // APICALL
 //VAR   VARIABLES DOM
@@ -25,9 +29,9 @@ async function printList() {
     <span class='${items[i].isBought ? "textSpan" : ""}'>${
       items[i].nameProduct
     }</span>
-    <span onclick="deleteItemFromList('${i}')" class="item-delete-btn" id='${
+    <span onclick="deleteItemFromList('${
       items[i].id
-    }'>x</span>
+    }')" class="item-delete-btn" id='${items[i].id}'>x</span>
     </li>`;
   }
 }
@@ -60,9 +64,10 @@ async function addItemToList() {
 }
 
 //¡   FUNCTION TO DELETE
-function deleteItemFromList(index) {
-  items.splice(index, 1);
-  printList();
+async function deleteItemFromList(inputIdDOM) {
+  await deleteItemFromAPI(inputIdDOM);
+
+  await printList();
 }
 
 //OKAY   FUNCION TO CHECKBOX
