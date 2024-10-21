@@ -1,22 +1,29 @@
 // APICALL
-async function apiCall() {
-  const response = await fetch(
-    "https://670ed0e63e7151861655dd83.mockapi.io/api/v1/ingredients"
-  );
-  const data = response.json;
-  console.log(data);
-}
-
 //VAR   VARIABLES DOM
 let items = [];
+const item = {
+  id: "",
+  createdAt: "",
+  nameProduct: "",
+  isBought: false,
+};
 const shopListDOM = document.getElementById("listId");
 const inputIdDOM = document.getElementById("inputId");
 const addBtnId = document.getElementById("addBtnId");
 
-//
+async function apiCall() {
+  const response = await fetch(
+    "https://670ed0e63e7151861655dd83.mockapi.io/api/v1/ingredients"
+  );
+  const data = await response.json();
+  items = data;
+  console.log(items);
+}
 
 //¿   FUNCTION TO PRINT ARRAY[ITEMS]
-function printList() {
+async function printList() {
+  await apiCall();
+  console.log(items);
   shopListDOM.innerHTML = "";
   for (let i = 0; i < items.length; i++) {
     shopListDOM.innerHTML += `<li>
@@ -83,14 +90,12 @@ function textFormat(text) {
 }
 
 //?   FUNCTION MAIN
-function main() {
-  // alert("Welcome to the list app! Start deleting this alert, please.");
+async function main() {
   addBtnId.addEventListener("click", addItemToList);
-  apiCall();
-  printList();
+  await printList();
 }
 
-main();
+await main();
 
 window.addItemToList = addItemToList;
 window.deleteItemFromList = deleteItemFromList;
