@@ -32,7 +32,7 @@ async function printList() {
     onchange="checkedItem(${items[i].id}, ${i})" 
     ${items[i].isBought ? "checked" : ""} 
   >
-</span
+</span>
 
     <span class='${items[i].isBought ? "textSpan" : ""}'>${
       items[i].nameProduct
