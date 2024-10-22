@@ -2,7 +2,7 @@ import {
   getAllItemsFromAPI,
   postItemToAPI,
   deleteItemFromAPI,
-  patchItemToAPI,
+  putItemToAPI,
 } from "./api.services.js";
 
 // APICALL
@@ -29,7 +29,7 @@ async function printList() {
 <span>
   <input 
     type="checkbox" 
-    onchange="checkedItem(${items[i].id})" 
+    onchange="checkedItem(${items[i].id}, ${i})" 
     ${items[i].isBought ? "checked" : ""} 
   >
 </span
@@ -79,13 +79,13 @@ async function deleteItemFromList(inputIdDOM) {
 }
 
 //OKAY   FUNCION TO CHECKBOX
-async function checkedItem(idDOM) {
-  let itemStatus = !items[idDOM].isBought;
-  console.log(idDOM);
+async function checkedItem(idDOM, index) {
+  items[index].isBought = !items[index].isBought;
+  const itemStatus = items[index].isBought;
   let itemObject = {
     isBought: itemStatus,
   };
-  await patchItemToAPI(idDOM, itemObject);
+  await putItemToAPI(idDOM, itemObject);
 
   await printList();
 }
