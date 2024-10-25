@@ -4,13 +4,10 @@ Esta es una aplicación sencilla de lista de la compra que permite a los usuario
 
 ## 📋 Tabla de Contenidos
 
-- [Características](#características)
-- [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Instalación y Configuración](#instalación-y-configuración)
-- [Uso](#uso)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Contribuir](#contribuir)
-- [Licencia](#licencia)
+- Características
+- Recursos Utilizados
+- Instalación y Configuración
+-
 
 ## ✨ Características
 
@@ -38,3 +35,10 @@ Clona el repositorio:
 ```bash
 git clone https://github.com/API-CLUB/shopListJS.git
 ```
+
+##Miembro API_CLUB:##
+
+[**Paula Calvo**](www.linkedin.com/in/paulacalvogarcia2001)
+[**Alex Monzon**](https://www.linkedin.com/in/alexmonzon/)
+[**Ivan Lopez**](www.linkedin.com/in/ivan-lopez-nieto-21a428319)
+[**Jaime Castro**](www.linkedin.com/in/jaimecastrosabogal)
