@@ -7,7 +7,7 @@ Esta es una aplicación sencilla de lista de la compra que permite a los usuario
 - Características
 - Recursos Utilizados
 - Instalación y Configuración
--
+- Miembros del equipo
 
 ## ✨ Características
 
