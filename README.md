@@ -36,7 +36,7 @@ Clona el repositorio:
 git clone https://github.com/API-CLUB/shopListJS.git
 ```
 
-##Miembro API_CLUB:##
+## Miembro API_CLUB:
 
 [**Paula Calvo**](www.linkedin.com/in/paulacalvogarcia2001)
 [**Alex Monzon**](https://www.linkedin.com/in/alexmonzon/)
